@@ -1,19 +1,17 @@
 ## Uppgift
 
-Koppla in en LED matris och en analog joystick till en arduino. Skriv ut en etta på samma sätt som en tärning på LED matrisen.
-Klickar man joysticken åt något håll ska talet ändras och det nya värdet skrivas ut på LED matrisen.
-Rörs joysticken åt höger ska 1 adderas till talet, åt vänster ska talet 1 subtraheras från talet, uppåt ska 2 adderas till talet, och ner ska 2 subtraheras från talet. 
+Koppla in wipern på en potentiometer till en analog input pin på en arduino, ena terminalen till 5V, och andra terminalen till jord.
+Skriv ut värdet från den analoga input pinnen och vrid på potentiometern för att se det skifta.
 
 ## Wokwi
 
-https://wokwi.com/projects/456953521227841537
+https://wokwi.com/projects/456958487475223553
 
 
 ## Branches
 
 Detta repo innehåller flera grenar för de olika situationer vi kommer titta på
 
-**OBS!** I denna branch tittar vi på en lite modifierad version av Stefans kod som printar både till serial monitor och till en LED matris som vi kommer gå in på mer nästa vecka.
 
 
 ## make kommandon
