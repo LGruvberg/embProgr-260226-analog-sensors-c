@@ -18,26 +18,51 @@ int main() {
 	sei();
 	init_serial();
 
-	uint16_t value;
-	uint16_t old_value;
+	// uint16_t value;
+	uint16_t value = 0;
+	// uint16_t old_value;
 	millis_t millis_since_last_print = 0;
-	millis_t current_millis = 0;
-
+	// millis_t current_millis = 0;
+	
 	while (1) {
-		current_millis = millis();
-		value = analogRead(IN_PIN);
+		millis_t current_millis = millis();
 
-		// Printa indatan varje sekund
-		/*if (current_millis - millis_since_last_print >= 1000) {
-			printf("Current value: %u\n", value);
+		//	Read and print every 1000ms
+		if (current_millis - millis_since_last_print >= 1000) {
 			millis_since_last_print = current_millis;
-		}*/
+			value = analogRead(IN_PIN);
 
-		// Printa varje förändring
-		if (old_value != value) {
-			old_value = value;
-			printf("Current value: %u\n", value);
+			if (value == 0) {
+				printf("Ljudlöst (%u)\n", value);
+			}
+			else if (value < 250) {
+				printf("Låg volym (%u)\n", value);
+			}
+			else if (value < 500) {
+				printf("Medel volym (%u)\n", value);
+			}
+			else if (value < 750) {
+				printf("Hög volym! (%u)\n", value);
+			}
+			else {
+				printf("Väldigt hög volym!!! (%u)\n", value);
+			}
 		}
+		// current_millis = millis();
+
+		// // value = analogRead(IN_PIN);
+
+		// // Printa indatan varje sekund
+		// /*if (current_millis - millis_since_last_print >= 1000) {
+		// 	printf("Current value: %u\n", value);
+		// 	millis_since_last_print = current_millis;
+		// }*/
+
+		// // Printa varje förändring
+		// if (old_value != value) {
+		// 	old_value = value;
+		// 	printf("Current value: %u\n", value);
+		// }
 	}
 	return 0;
 }
