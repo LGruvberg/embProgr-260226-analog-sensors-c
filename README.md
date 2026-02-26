@@ -4,15 +4,10 @@ Koppla in wipern på en potentiometer till en analog input pin på en arduino, e
 Skriv ut värdet från den analoga input pinnen och vrid på potentiometern för att se det skifta.
 
 ## Wokwi
-
 https://wokwi.com/projects/456958487475223553
 
-
 ## Branches
-
-Detta repo innehåller flera grenar för de olika situationer vi kommer titta på
-
-
+Detta repo innehåller en branch för varje labbuppgift
 
 ## make kommandon
 
