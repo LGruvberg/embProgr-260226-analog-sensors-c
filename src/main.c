@@ -6,15 +6,25 @@
 #include "millis.h"
 #include "uart.h"
 
-#define IN_PIN PC0
+#define IN_PIN	PC0
 
-#define BIT_SET(a, b) (a |= (1U << b))
-#define BIT_CLEAR(a, b) (a &= ~(1U << b))
-#define BIT_FLIP(a, b) (a ^= (1U << b))
-#define BIT_CHECK(a, b) (a & (1U << b))
+#define BIT_SET(a, b)	(a |= (1U << b))
+#define BIT_CLEAR(a, b)	(a &= ~(1U << b))
+#define BIT_FLIP(a, b)	(a ^= (1U << b))
+#define BIT_CHECK(a, b)	(a & (1U << b))
+
+#define B_LED	PB2   // Pin 10
+#define G_LED	PB3   // Pin 11
+#define R_LED	PB4   // Pin 12
 
 int main() {
 	BIT_CLEAR(DDRC, IN_PIN);
+
+	/////////
+	BIT_SET(DDRB, B_LED);
+	BIT_SET(DDRB, G_LED);
+	BIT_SET(DDRB, R_LED);
+	/////////
 
 	millis_init();
 	sei();
@@ -39,6 +49,24 @@ int main() {
 			integer = (int)celsius;
 			decimals = abs((int)((celsius - integer) * 100));
 			printf("Current value: %d.%d\n", integer, decimals);
+
+			/////////
+			// Turn off LEDs
+			BIT_CLEAR(PORTB, B_LED);
+			BIT_CLEAR(PORTB, G_LED);
+			BIT_CLEAR(PORTB, R_LED);
+
+			if (celsius < 10) {
+				BIT_SET(PORTB, B_LED);
+			}
+			else if (celsius > 30) {
+				BIT_SET(PORTB, R_LED);
+			}
+			else {
+				BIT_SET(PORTB, G_LED);
+			}
+			/////////
+
 			millis_since_last_print = current_millis;
 		}
 	}
